@@ -1,0 +1,6 @@
+{%- for k,v in config|dictsort -%}
+[{{ k }}]
+{% for key,val in v|dictsort -%}
+{{ key }} = {{ val }}
+{% endfor -%}
+{%- endfor -%}

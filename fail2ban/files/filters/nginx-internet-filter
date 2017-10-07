@@ -1,0 +1,11 @@
+# Fail2Ban filter configuration file
+#
+# Author : Jonathan Leal
+#
+# Revision: 1
+#
+
+[Definition]
+# Looks for HEAD requests from user-agent "internet-filter/1.9*"
+failregex = ^<HOST> - - .*"(HEAD).*HTTP.*"internet-filter/1\.9.*
+ignoreregex =

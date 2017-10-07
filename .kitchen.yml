@@ -1,0 +1,39 @@
+# -*- coding: utf-8 -*-
+# vim: ft=yaml
+---
+driver:
+  name: vagrant
+
+provisioner:
+  name: salt_solo
+  is_file_root: true
+  salt_copy_filter:
+    - .kitchen
+    - .git
+  state_top:
+    base:
+      "*":
+        - test.mockup
+        - fail2ban
+  pillars:
+    top.sls:
+      base:
+        "*":
+          - fail2ban
+
+platforms:
+  - name: bento/debian-8
+  - name: bento/debian-9
+
+suites:
+  - name: default
+    provisioner:
+      pillars:
+        fail2ban.sls:
+          fail2ban:
+            enabled: True
+
+  - name: custom
+    provisioner:
+      pillars-from-files:
+        fail2ban.sls: pillar-custom.sls

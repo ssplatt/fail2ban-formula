@@ -1,0 +1,4 @@
+[Definition]
+{% for k,v in config|dictsort -%}
+{{ k }} = {{ v|replace("\\\\","\\") }}
+{% endfor -%}
